@@ -1,6 +1,6 @@
 package model;
 
-import model.scoring.Chance;
+import model.scoring.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,9 +14,12 @@ public class Game {
 
   public Game() {
     this.rows = new LinkedList<ScoreRow>();
-    add(new Chance());
-    add(new Chance());
-    add(new Chance());
+    add(new SumOfK(1));
+    add(new Brelan());
+    add(new FourOfAKind());
+    add(new Yahtzee());
+    add(new SmallSuit());
+    add(new BigSuit());
 
     for(int i = 0; i < 5; i++)
       dice.add(new Die());
@@ -63,9 +66,9 @@ public class Game {
 
   public void roll() {
     if(this.nbRollsLeft >= 1) {
-      for(Die die : dice)
-        if(!die.isBlocked())
-         die.roll();
+      for (int i = 0; i < dice.size(); i++) {
+        dice.get(i).setFaceValue(i+1);
+      }
       this.nbRollsLeft-=1;
     }
   }

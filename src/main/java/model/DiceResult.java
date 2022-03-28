@@ -32,4 +32,8 @@ public class DiceResult {
             faces.add(dice.value());
         return new DiceResult(faces);
     }
+
+    public List<Integer> getFaces() {
+        return faces;
+    }
 }
