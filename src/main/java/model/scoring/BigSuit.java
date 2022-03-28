@@ -17,6 +17,6 @@ public class BigSuit implements Combination {
 
     @Override
     public String description() {
-        return null;
+        return "Renvoie 40 si vous avez une suite de 5";
     }
 }

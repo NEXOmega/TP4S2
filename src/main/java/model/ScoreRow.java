@@ -33,6 +33,7 @@ public class ScoreRow {
   }
 
   public void reset() {
-    // TODO: à compléter 
+    this.score = 0;
+    this.isFilled = false;
   }
 }

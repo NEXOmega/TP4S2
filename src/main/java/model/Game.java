@@ -14,7 +14,8 @@ public class Game {
 
   public Game() {
     this.rows = new LinkedList<ScoreRow>();
-    add(new SumOfK(1));
+    for(int i = 1; i <= 6; i++)
+      add(new SumOfK(i));
     add(new Brelan());
     add(new FourOfAKind());
     add(new Yahtzee());
@@ -47,8 +48,10 @@ public class Game {
   }
 
   public int getTotalScore() {
-    // TODO: à modifier
-    return rows.stream().mapToInt(ScoreRow::score).sum();
+    int score = 0;
+    if(rows.subList(0, 5).stream().mapToInt(ScoreRow::score).sum() == 63)
+      score += 100;
+    return rows.stream().mapToInt(ScoreRow::score).sum() + score;
   }
 
 
@@ -66,9 +69,9 @@ public class Game {
 
   public void roll() {
     if(this.nbRollsLeft >= 1) {
-      for (int i = 0; i < dice.size(); i++) {
-        dice.get(i).setFaceValue(i+1);
-      }
+      for(Die die : dice)
+        if(!die.isBlocked())
+          die.roll();
       this.nbRollsLeft-=1;
     }
   }
@@ -81,8 +84,10 @@ public class Game {
   }
 
   public boolean isOver() {
-    // TODO: à modifier
-    return false;
+    for(ScoreRow row : rows)
+      if(row.isAvailable())
+        return false;
+    return true;
   }
 
   private void unblockDice() {

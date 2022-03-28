@@ -19,6 +19,6 @@ public class SumOfK implements Combination {
 
     @Override
     public String description() {
-        return "Somme d'une valeur";
+        return "Somme des " + k;
     }
 }
