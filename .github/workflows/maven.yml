@@ -25,6 +25,6 @@ jobs:
         with:
           java-version: 17
       - name: Publish SNapshot to github packages
-        run: mvn -B --no-transfer-progress deploy -DskipTests --projects TP4S2
+        run: mvn -B --no-transfer-progress deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
